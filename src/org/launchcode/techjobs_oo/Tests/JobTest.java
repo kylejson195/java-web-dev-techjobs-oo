@@ -3,6 +3,8 @@ package org.launchcode.techjobs_oo.Tests;
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
 
+import java.sql.SQLOutput;
+
 import static org.junit.Assert.*;
 
 public class JobTest {
@@ -16,14 +18,15 @@ public class JobTest {
     assertTrue(testJobOne.getId() == 1);
 }
 
+Job testJob = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
 
 @Test
     public void testJobConstructorSetsAllFields(){
-     Job testJobThree = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
-     Employer ACME = testJobThree.getEmployer();
-     Location Desert = testJobThree.getLocation();
-     PositionType qualityControl = testJobThree.getPositionType();
-     CoreCompetency persistence = testJobThree.getCoreCompetency();
+    // Job testJobThree = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
+     Employer ACME = testJob.getEmployer();
+     Location Desert = testJob.getLocation();
+     PositionType qualityControl = testJob.getPositionType();
+     CoreCompetency persistence = testJob.getCoreCompetency();
 
      assertTrue(ACME instanceof Employer);
      assertTrue(Desert instanceof Location);
@@ -39,11 +42,26 @@ public class JobTest {
     assertEquals(testJobFour, testJobFive);
 }
 @Test
-    public void  doesThisNewMethodWork(){
+    public void  doesToStringWork(){
+    assertTrue( testJob.toString() != " ");
 
-    Job testJobSix = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
-    assertTrue( testJobSix.toString() != " ");
-    System.out.println("Why is this harder than it should be?");
+}
+@Test
+    public void doTheLinesFormat(){
+    assertTrue(testJob.toString().contains("\n"));
+
+}
+@Test
+    public void doesNullReplacementWork(){
+    Job testJobSeven = new Job("Product Tester", new Employer(""), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
+    assertTrue(testJobSeven.toString().contains("Data Not Available"));
+    System.out.println(testJobSeven.toString());
+}
+@Test
+    public void oopsTesting(){
+    Job testJobEight = new Job ("" , new Employer(), new Location(), new PositionType(), new CoreCompetency());
+    assertTrue( testJobEight.toString().contains("OOPS"));
+
 }
 
 }

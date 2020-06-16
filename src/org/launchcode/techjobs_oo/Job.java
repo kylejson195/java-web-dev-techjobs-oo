@@ -103,10 +103,32 @@ public class Job {
     }
 @Override
     public String toString() {
-        String result = "" + getName() + "" + getEmployer() + "" + getLocation() + "" + getPositionType();
-        return result;
+    if (getName().equals("") && employer.getValue() == null && location.getValue() == null && location.getValue() == null && positionType.getValue() == null && coreCompetency.getValue() == null){
+        String errorMessage = "OOPS! This job does not seem to exist";
+        return errorMessage;
+    }
+    if (getName() == null || getName().equals("")){
+        setName("Data Not Available");}
+    if (employer.getValue() == null || employer.getValue() == ""){
+        employer.setValue("Data Not Available");
+    }
+    if (location.getValue() == null || location.getValue() == ""){
+        location.setValue("Data Not Available");
+    }
+    if (positionType.getValue() == null || positionType.getValue() == ""){
+        positionType.setValue("Data Not Available");
+    }
+    if (coreCompetency.getValue() == null || coreCompetency.getValue() == ""){
+        coreCompetency.setValue("Data Not Available");
     }
 
-
+    String result = "ID: " + getId()
+            + "\nName: " + getName()
+            + "\nEmployer: " + getEmployer()
+            + "\nLocation: " + getLocation()
+            + "\nPosition Type: " + getPositionType()
+            + "\nCore Competency: " + getCoreCompetency();
+        return result;
+    }
 }
 
